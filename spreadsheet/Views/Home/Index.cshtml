@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Upload Excel File</h2>
+
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <label for="file">Choose Excel File:</label>
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="Upload" />
+    </div>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div style="color: red; margin-top: 10px;">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (ViewBag.ExcelData != null)
+{
+    <h3>Excel Data:</h3>
+    <form method="post" action="@Url.Action("UpdateExcel", "Home")">
+        <table border="1" cellpadding="5">
+            @for (var i = 0; i < ViewBag.ExcelData.Count; i++)
+            {
+                <tr>
+                    @for (var j = 0; j < ViewBag.ExcelData[i].Count; j++)
+                    {
+                        <td>
+                            <input type="hidden" name="excelData[@i][@j]" value="@ViewBag.ExcelData[i][j]" />
+                            <input type="text" name="updatedExcelData[@i][@j]" value="@ViewBag.ExcelData[i][j]" />
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+        <button type="submit">Save Changes</button>
+    </form>
+}
