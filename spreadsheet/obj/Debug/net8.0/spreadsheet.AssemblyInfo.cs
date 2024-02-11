@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("spreadsheet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+996bb5fd74990f433d447f3260707a2d7f00d6b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("spreadsheet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("spreadsheet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

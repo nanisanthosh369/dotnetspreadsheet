@@ -31,13 +31,26 @@
                     @for (var j = 0; j < ViewBag.ExcelData[i].Count; j++)
                     {
                         <td>
-                            <input type="hidden" name="excelData[@i][@j]" value="@ViewBag.ExcelData[i][j]" />
+                            <input type="hidden" name="updatedExcelData[@i][@j]" value="@ViewBag.ExcelData[i][j]" />
                             <input type="text" name="updatedExcelData[@i][@j]" value="@ViewBag.ExcelData[i][j]" />
                         </td>
                     }
+                    <td>
+                        <button type="submit" name="clearRowIndex" value="@i">Clear</button>
+                    </td>
                 </tr>
             }
+
+            <tr>
+                @for (var j = 0; j < ViewBag.ExcelData[0].Count; j++)
+                {
+                    <td>
+                        <input type="text" name="newRow[@j]" value="" />
+                    </td>
+                }
+            </tr>
         </table>
+        <button type="submit" name="addRow" value="true">Add Row</button>
         <button type="submit">Save Changes</button>
     </form>
 }

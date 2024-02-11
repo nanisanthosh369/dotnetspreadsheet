@@ -1,11 +1,8 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using spreadsheet.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 
 namespace spreadsheet.Controllers
@@ -74,13 +71,38 @@ namespace spreadsheet.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateExcel(List<List<string>> updatedExcelData)
+        public ActionResult UpdateExcel(List<List<string>> updatedExcelData, List<List<string>> newData, List<string> newRow, int? clearRowIndex, bool? addRow)
         {
             try
             {
                 if (updatedExcelData != null)
                 {
-                    ViewBag.ExcelData = updatedExcelData;
+                    // Clear existing data
+                    ViewBag.ExcelData = new List<List<string>>();
+
+                    // Add new data if provided
+                    if (newData != null && newData.Count > 0)
+                    {
+                        ViewBag.ExcelData.AddRange(newData);
+                    }
+
+                    // Update existing data
+                    if (updatedExcelData != null && updatedExcelData.Count > 0)
+                    {
+                        ViewBag.ExcelData.AddRange(updatedExcelData);
+                    }
+
+                    // Add new row if requested
+                    if (addRow.HasValue && addRow.Value)
+                    {
+                        ViewBag.ExcelData.Add(newRow);
+                    }
+
+                    // Clear row if requested
+                    if (clearRowIndex.HasValue && clearRowIndex.Value >= 0 && clearRowIndex.Value < ViewBag.ExcelData.Count)
+                    {
+                        ClearRow(ViewBag.ExcelData, clearRowIndex.Value);
+                    }
                 }
                 else
                 {
@@ -94,5 +116,24 @@ namespace spreadsheet.Controllers
 
             return View("Index");
         }
+
+
+
+        private void ClearRow(List<List<string>> data, int rowIndex)
+        {
+            if (rowIndex >= 0 && rowIndex < data.Count)
+            {
+                for (int i = 0; i < data[rowIndex].Count; i++)
+                {
+                    data[rowIndex][i] = string.Empty;
+                }
+            }
+        }
+
+        private void AddRow(List<List<string>> data, List<string> newRow)
+        {
+            data.Add(newRow);
+        }
+
     }
 }

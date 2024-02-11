@@ -38,3 +38,4 @@ C:\Users\SANTU\RiderProjects\spreadsheet\spreadsheet\obj\Debug\net8.0\refint\spr
 C:\Users\SANTU\RiderProjects\spreadsheet\spreadsheet\obj\Debug\net8.0\spreadsheet.pdb
 C:\Users\SANTU\RiderProjects\spreadsheet\spreadsheet\obj\Debug\net8.0\spreadsheet.genruntimeconfig.cache
 C:\Users\SANTU\RiderProjects\spreadsheet\spreadsheet\obj\Debug\net8.0\ref\spreadsheet.dll
+C:\Users\SANTU\RiderProjects\spreadsheet\spreadsheet\obj\Debug\net8.0\spreadsheet.sourcelink.json
